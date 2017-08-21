@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Comentario creation</h1>
+    <h4>Texto: {{ post1.texto }}</h4>
+    <h4>Usuario: {{ usuario.username }}</h4>
+    <h4>Fecha: {% if post1.fecha %}{{ post1.fecha|date('Y-m-d H:i:s') }}{% endif %}</h4>
+
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('comentario_index') }}">Back to the list</a>
+        </li>
+    </ul>
+
+    <h1>Lista de comentarios</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Texto</th>
+            <th>Usuario</th>
+            <th>Fecha</th>
+        </tr>
+
+        </thead>
+        <tbody>
+            {% for comentario in comentarios %}
+        <tr>
+            <td>{{ comentario.textoComentario }}</td>
+            <td>{{ comentario.user.username }}</td>
+            <td>{% if comentario.fechaComentario %}{{ comentario.fechaComentario|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+                {% else %}
+                <h1>No hay comentarios</h1>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+
+        <h4>{{ comentario.textoComentario }}</h4>
+
+
+{% endblock %}

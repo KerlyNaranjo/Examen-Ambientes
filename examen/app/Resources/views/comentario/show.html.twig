@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Comentario</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ comentario.id }}</td>
+            </tr>
+            <tr>
+                <th>Textocomentario</th>
+                <td>{{ comentario.textoComentario }}</td>
+            </tr>
+            <tr>
+                <th>Fechacomentario</th>
+                <td>{% if comentario.fechaComentario %}{{ comentario.fechaComentario|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('comentario_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('comentario_edit', { 'id': comentario.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
